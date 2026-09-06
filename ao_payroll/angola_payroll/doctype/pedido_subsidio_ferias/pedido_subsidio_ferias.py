@@ -122,20 +122,35 @@ class PedidoSubsidioFerias(Document):
             if amount <= 0:
                 continue
 
-            # A submitted Salary Slip covering the request payroll
-            # date means the request has entered payroll and should
-            # already be represented by the paid-balance calculation.
+            # A reservation is released only when THIS request's
+            # generated Additional Salary has actually reached a
+            # submitted Salary Slip.
+            #
+            # An unrelated submitted slip covering the same payroll
+            # date must not release the reservation.
             paid_in_payroll = False
 
-            if request.payroll_date:
+            if request.additional_salary:
                 paid_in_payroll = bool(
-                    frappe.db.exists(
-                        "Salary Slip",
+                    frappe.db.sql(
+                        """
+                        SELECT 1
+                        FROM `tabSalary Detail` sd
+                        INNER JOIN `tabSalary Slip` ss
+                            ON ss.name = sd.parent
+                        WHERE
+                            sd.parenttype = 'Salary Slip'
+                            AND sd.parentfield = 'earnings'
+                            AND sd.additional_salary = %(additional_salary)s
+                            AND ss.employee = %(employee)s
+                            AND ss.docstatus = 1
+                        LIMIT 1
+                        """,
                         {
-                            "employee": self.employee,
-                            "docstatus": 1,
-                            "start_date": ["<=", request.payroll_date],
-                            "end_date": [">=", request.payroll_date],
+                            "additional_salary":
+                                request.additional_salary,
+                            "employee":
+                                self.employee,
                         },
                     )
                 )
