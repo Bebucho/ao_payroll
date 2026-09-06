@@ -1,0 +1,280 @@
+{
+ "actions": [],
+ "creation": "2026-09-06 15:52:35.876814",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "inss_section",
+  "inss_employee_rate",
+  "inss_employer_rate",
+  "column_break_jyow",
+  "custom_inss_liability_account",
+  "custom_inss_employer_expense_account",
+  "tab_break_xozi",
+  "section_break_gjbb",
+  "inss_salary_component",
+  "irt_salary_component",
+  "irt_base_salary_component",
+  "overtime_salary_component",
+  "column_break_lfpf",
+  "gross_salary_component",
+  "net_salary_component",
+  "holyday_allowance_salary_component",
+  "christmas_allowance_salary_component",
+  "tab_3_tab",
+  "christmas_allowance_rate",
+  "column_break_qfdt",
+  "custom_christmas_allowance_payment_mode",
+  "custom_christmas_allowance_payment_month",
+  "section_break_bpgl",
+  "custom_christmas_allowance_payment_blocks",
+  "tab_4_tab",
+  "holiday_and_christmas_section",
+  "holiday_allowance_rate",
+  "custom_holiday_allowance_payment_mode",
+  "custom_holiday_allowance_block_method",
+  "custom_holiday_allowance_fixed_month",
+  "custom_holiday_allowance_prorate_service",
+  "tab_5_tab",
+  "column_break_dzsa",
+  "custom_christmas_accrual_liability_account",
+  "custom_christmas_accrual_expense_account",
+  "column_break_uxom",
+  "custom_holiday_accrual_liability_account",
+  "custom_holiday_accrual_expense_account"
+ ],
+ "fields": [
+  {
+   "fieldname": "inss_section",
+   "fieldtype": "Section Break",
+   "label": "INSS"
+  },
+  {
+   "fieldname": "inss_employee_rate",
+   "fieldtype": "Percent",
+   "label": "INSS Employee Rate"
+  },
+  {
+   "fieldname": "inss_employer_rate",
+   "fieldtype": "Percent",
+   "label": "INSS Employer Rate"
+  },
+  {
+   "fieldname": "custom_inss_employer_expense_account",
+   "fieldtype": "Link",
+   "label": "Employer INSS Expense Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "custom_inss_liability_account",
+   "fieldtype": "Link",
+   "label": "INSS Liability Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "holiday_and_christmas_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "christmas_allowance_rate",
+   "fieldtype": "Percent",
+   "label": "Christmas Allowance Rate"
+  },
+  {
+   "fieldname": "custom_christmas_accrual_expense_account",
+   "fieldtype": "Link",
+   "label": "Christmas Accrual Expense Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "custom_christmas_accrual_liability_account",
+   "fieldtype": "Link",
+   "label": "Christmas Accrual Liability Account",
+   "options": "Account"
+  },
+  {
+   "default": "November",
+   "fieldname": "custom_christmas_allowance_payment_month",
+   "fieldtype": "Select",
+   "label": "Christmas Allowance Payment Month",
+   "options": "\nJanuary\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember"
+  },
+  {
+   "fieldname": "custom_christmas_allowance_payment_mode",
+   "fieldtype": "Select",
+   "label": "Christmas Allowance Payment Mode",
+   "options": "Fixed Month\nPayment Blocks\nMonthly Duodecimos"
+  },
+  {
+   "fieldname": "custom_christmas_allowance_payment_blocks",
+   "fieldtype": "Table",
+   "label": "Christmas Allowance Payment Blocks",
+   "options": "Christmas Allowance Payment Block"
+  },
+  {
+   "fieldname": "holiday_allowance_rate",
+   "fieldtype": "Percent",
+   "label": "Holiday Allowance Rate"
+  },
+  {
+   "fieldname": "custom_holiday_accrual_expense_account",
+   "fieldtype": "Link",
+   "label": "Holiday Accrual Expense Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "custom_holiday_accrual_liability_account",
+   "fieldtype": "Link",
+   "label": "Holiday Accrual Liability Account",
+   "options": "Account"
+  },
+  {
+   "default": "Per Leave Block",
+   "fieldname": "custom_holiday_allowance_payment_mode",
+   "fieldtype": "Select",
+   "label": "Holiday Allowance Payment Mode",
+   "options": "Fixed Month\nEmployee Request\nPer Leave Block\nMonthly Duodecimos"
+  },
+  {
+   "depends_on": "eval:doc.custom_holiday_allowance_payment_mode=='Fixed Month'",
+   "fieldname": "custom_holiday_allowance_fixed_month",
+   "fieldtype": "Select",
+   "label": "Holiday Allowance Fixed Month",
+   "options": "\nJanuary\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember"
+  },
+  {
+   "default": "Proportional Per Block",
+   "depends_on": "eval:doc.custom_holiday_allowance_payment_mode=='Per Leave Block'",
+   "fieldname": "custom_holiday_allowance_block_method",
+   "fieldtype": "Select",
+   "label": "Leave Block Payment Method",
+   "options": "Proportional Per Block\nFull on First Block"
+  },
+  {
+   "default": "1",
+   "fieldname": "custom_holiday_allowance_prorate_service",
+   "fieldtype": "Check",
+   "label": "Prorate for Partial-Year Service"
+  },
+  {
+   "fieldname": "tab_break_xozi",
+   "fieldtype": "Tab Break",
+   "label": "Components"
+  },
+  {
+   "fieldname": "section_break_gjbb",
+   "fieldtype": "Section Break",
+   "label": "Salary Components"
+  },
+  {
+   "fieldname": "inss_salary_component",
+   "fieldtype": "Link",
+   "label": "INSS Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "irt_salary_component",
+   "fieldtype": "Link",
+   "label": "IRT Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "irt_base_salary_component",
+   "fieldtype": "Link",
+   "label": "IRT Base Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "gross_salary_component",
+   "fieldtype": "Link",
+   "label": "Gross Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "net_salary_component",
+   "fieldtype": "Link",
+   "label": "Net Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "holyday_allowance_salary_component",
+   "fieldtype": "Link",
+   "label": "Holyday Allowance Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "christmas_allowance_salary_component",
+   "fieldtype": "Link",
+   "label": "Christmas Allowance Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "column_break_jyow",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tab_3_tab",
+   "fieldtype": "Tab Break",
+   "label": "Christmas"
+  },
+  {
+   "fieldname": "tab_4_tab",
+   "fieldtype": "Tab Break",
+   "label": "Holidays"
+  },
+  {
+   "fieldname": "column_break_dzsa",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_bpgl",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_uxom",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tab_5_tab",
+   "fieldtype": "Tab Break",
+   "label": "Payroll Accruals"
+  },
+  {
+   "fieldname": "column_break_lfpf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "overtime_salary_component",
+   "fieldtype": "Link",
+   "label": "Overtime Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "column_break_qfdt",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-09-06 15:59:54.222302",
+ "modified_by": "Administrator",
+ "module": "Angola Payroll",
+ "name": "Angola Payroll Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

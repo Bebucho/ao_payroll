@@ -1,0 +1,185 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "naming_series:",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "overtime_request",
+  "employee",
+  "employee_name",
+  "company",
+  "department",
+  "overtime_date",
+  "approved_hours",
+  "overtime_type",
+  "hourly_base",
+  "multiplier",
+  "calculated_amount",
+  "payroll_date",
+  "salary_component",
+  "additional_salary",
+  "notes",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "OTP-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "overtime_request",
+   "fieldtype": "Link",
+   "label": "Overtime Request",
+   "options": "Overtime Request",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "overtime_request.employee",
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "overtime_request.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "overtime_request.company",
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "overtime_request.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "overtime_request.overtime_date",
+   "fieldname": "overtime_date",
+   "fieldtype": "Date",
+   "label": "Overtime Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "overtime_request.approved_hours",
+   "fieldname": "approved_hours",
+   "fieldtype": "Float",
+   "label": "Approved Hours",
+   "read_only": 1
+  },
+  {
+   "fieldname": "overtime_type",
+   "fieldtype": "Select",
+   "label": "Overtime Type",
+   "options": "Normal\nNight\nRest Day\nPublic Holiday\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hourly_base",
+   "fieldtype": "Currency",
+   "label": "Hourly Base",
+   "reqd": 1
+  },
+  {
+   "default": "1.5",
+   "fieldname": "multiplier",
+   "fieldtype": "Float",
+   "label": "Multiplier",
+   "reqd": 1
+  },
+  {
+   "fieldname": "calculated_amount",
+   "fieldtype": "Currency",
+   "label": "Calculated Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payroll_date",
+   "fieldtype": "Date",
+   "label": "Payroll Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "salary_component",
+   "fieldtype": "Link",
+   "label": "Salary Component",
+   "options": "Salary Component",
+   "read_only": 1
+  },
+  {
+   "fieldname": "additional_salary",
+   "fieldtype": "Link",
+   "label": "Additional Salary",
+   "options": "Additional Salary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Overtime Processing",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "is_submittable": 1,
+ "module": "Angola Payroll",
+ "name": "Overtime Processing",
+ "naming_rule": "By \"Naming Series\" field",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1,
+   "cancel": 1,
+   "amend": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

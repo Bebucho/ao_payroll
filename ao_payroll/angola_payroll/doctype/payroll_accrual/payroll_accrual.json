@@ -1,0 +1,176 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "format:PA-{YYYY}-{#####}",
+ "creation": "2026-09-06 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "company",
+  "year",
+  "month",
+  "posting_date",
+  "section_break_1",
+  "holiday_target",
+  "holiday_gl_balance",
+  "holiday_movement",
+  "column_break_1",
+  "christmas_target",
+  "christmas_gl_balance",
+  "christmas_movement",
+  "section_break_2",
+  "details",
+  "section_break_3",
+  "journal_entry",
+  "reversal_date",
+  "reversal_journal_entry"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "year",
+   "fieldtype": "Int",
+   "label": "Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "month",
+   "fieldtype": "Select",
+   "label": "Month",
+   "options": "\nJanuary\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember",
+   "reqd": 1
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_1",
+   "fieldtype": "Section Break",
+   "label": "Accrual Summary"
+  },
+  {
+   "fieldname": "holiday_target",
+   "fieldtype": "Currency",
+   "label": "Férias Target Liability",
+   "read_only": 1
+  },
+  {
+   "fieldname": "holiday_gl_balance",
+   "fieldtype": "Currency",
+   "label": "Férias Current GL Balance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "holiday_movement",
+   "fieldtype": "Currency",
+   "label": "Férias Movement",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "christmas_target",
+   "fieldtype": "Currency",
+   "label": "Natal Target Liability",
+   "read_only": 1
+  },
+  {
+   "fieldname": "christmas_gl_balance",
+   "fieldtype": "Currency",
+   "label": "Natal Current GL Balance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "christmas_movement",
+   "fieldtype": "Currency",
+   "label": "Natal Movement",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Employee Details"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Table",
+   "label": "Details",
+   "options": "Payroll Accrual Detail",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Accounting"
+  },
+  {
+   "fieldname": "journal_entry",
+   "fieldtype": "Link",
+   "label": "Journal Entry",
+   "options": "Journal Entry",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reversal_date",
+   "fieldtype": "Date",
+   "label": "Reversal Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reversal_journal_entry",
+   "fieldtype": "Link",
+   "label": "Reversal Journal Entry",
+   "options": "Journal Entry",
+   "read_only": 1
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-06 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Angola Payroll",
+ "name": "Payroll Accrual",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1,
+   "cancel": 1,
+   "amend": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

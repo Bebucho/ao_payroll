@@ -1,0 +1,158 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "naming_series:",
+ "creation": "2026-09-06 00:00:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "employee",
+  "employee_name",
+  "entitlement_year",
+  "payroll_date",
+  "requested_amount",
+  "approved_amount",
+  "annual_entitlement",
+  "already_paid",
+  "remaining_before_request",
+  "salary_structure_assignment",
+  "base_salary",
+  "additional_salary",
+  "observacao"
+ ],
+ "fields": [
+  {
+   "default": "PSF-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Série",
+   "options": "PSF-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Colaborador",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Nome",
+   "read_only": 1
+  },
+  {
+   "fieldname": "entitlement_year",
+   "fieldtype": "Int",
+   "label": "Ano de Direito",
+   "reqd": 1
+  },
+  {
+   "fieldname": "payroll_date",
+   "fieldtype": "Date",
+   "label": "Data de Processamento",
+   "reqd": 1
+  },
+  {
+   "fieldname": "requested_amount",
+   "fieldtype": "Currency",
+   "label": "Valor Solicitado",
+   "reqd": 1
+  },
+  {
+   "fieldname": "approved_amount",
+   "fieldtype": "Currency",
+   "label": "Valor Aprovado",
+   "read_only": 1
+  },
+  {
+   "fieldname": "annual_entitlement",
+   "fieldtype": "Currency",
+   "label": "Direito Anual",
+   "read_only": 1
+  },
+  {
+   "fieldname": "already_paid",
+   "fieldtype": "Currency",
+   "label": "Já Pago",
+   "read_only": 1
+  },
+  {
+   "fieldname": "remaining_before_request",
+   "fieldtype": "Currency",
+   "label": "Saldo Antes do Pedido",
+   "read_only": 1
+  },
+  {
+   "fieldname": "salary_structure_assignment",
+   "fieldtype": "Link",
+   "label": "Salary Structure Assignment",
+   "options": "Salary Structure Assignment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "base_salary",
+   "fieldtype": "Currency",
+   "label": "Salário Base de Referência",
+   "read_only": 1
+  },
+  {
+   "fieldname": "additional_salary",
+   "fieldtype": "Link",
+   "label": "Additional Salary",
+   "options": "Additional Salary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "observacao",
+   "fieldtype": "Small Text",
+   "label": "Observação"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-06 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Angola Payroll",
+ "name": "Pedido Subsidio Ferias",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1,
+   "cancel": 1,
+   "amend": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

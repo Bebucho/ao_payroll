@@ -1,0 +1,65 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-08-24 16:46:47.011496",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "from_amount",
+  "column_break_pfxa",
+  "to_amount",
+  "column_break_ciax",
+  "fixed_amount",
+  "column_break_thcn",
+  "marginal_rate"
+ ],
+ "fields": [
+  {
+   "fieldname": "from_amount",
+   "fieldtype": "Currency",
+   "label": "From Amount"
+  },
+  {
+   "fieldname": "column_break_pfxa",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "to_amount",
+   "fieldtype": "Currency",
+   "label": "To Amount"
+  },
+  {
+   "fieldname": "column_break_ciax",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fixed_amount",
+   "fieldtype": "Currency",
+   "label": "Fixed Amount"
+  },
+  {
+   "fieldname": "column_break_thcn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "marginal_rate",
+   "fieldtype": "Percent",
+   "label": "Marginal Rate"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-08-24 16:49:28.734264",
+ "modified_by": "Administrator",
+ "module": "Angola Payroll",
+ "name": "IRT Slabs",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

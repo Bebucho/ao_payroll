@@ -1,0 +1,221 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "nome_funcionario",
+ "creation": "2026-09-05 21:15:49.246349",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "funcionario",
+  "nome_funcionario",
+  "status",
+  "data_saida",
+  "motivo_cessacao_contrato",
+  "aviso_previo",
+  "beneficios_previstos_tab",
+  "section_break_wrgg",
+  "salario_proporcional",
+  "subsidio_de_ferias_proporcional",
+  "subsidio_natal_proporcional",
+  "dias_ferias_nao_gozadas",
+  "valor_ferias_nao_gozadas",
+  "total_iliquido",
+  "base_inss",
+  "inss",
+  "base_irt",
+  "irt",
+  "total_descontos",
+  "valor_liquido",
+  "beneficios_adicionais_tab",
+  "table_yexo",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "funcionario",
+   "fieldtype": "Link",
+   "label": "Funcionario",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "funcionario.relieving_date",
+   "fetch_if_empty": 1,
+   "fieldname": "data_saida",
+   "fieldtype": "Date",
+   "label": "Data Saida",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "funcionario.custom_motivo_de_saida",
+   "fetch_if_empty": 1,
+   "fieldname": "motivo_cessacao_contrato",
+   "fieldtype": "Select",
+   "label": "Motivo Cessacao Contrato",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_wrgg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "funcionario.aviso_previo",
+   "fetch_if_empty": 1,
+   "fieldname": "aviso_previo",
+   "fieldtype": "Select",
+   "label": "Aviso Previo",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "funcionario.employee_name",
+   "fetch_if_empty": 1,
+   "fieldname": "nome_funcionario",
+   "fieldtype": "Data",
+   "label": "Nome Funcionario",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "funcionario.status",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "salario_proporcional",
+   "fieldtype": "Currency",
+   "label": "Salario Proporcional"
+  },
+  {
+   "fieldname": "subsidio_de_ferias_proporcional",
+   "fieldtype": "Currency",
+   "label": "Subsidio de Ferias Proporcional"
+  },
+  {
+   "fieldname": "subsidio_natal_proporcional",
+   "fieldtype": "Currency",
+   "label": "Subsidio Natal Proporcional"
+  },
+  {
+   "fieldname": "dias_ferias_nao_gozadas",
+   "fieldtype": "Float",
+   "label": "Dias Ferias Nao Gozadas",
+   "precision": "0"
+  },
+  {
+   "fieldname": "valor_ferias_nao_gozadas",
+   "fieldtype": "Currency",
+   "label": "Valor Ferias Nao Gozadas"
+  },
+  {
+   "fieldname": "beneficios_previstos_tab",
+   "fieldtype": "Tab Break",
+   "label": "Beneficios Previstos"
+  },
+  {
+   "fieldname": "beneficios_adicionais_tab",
+   "fieldtype": "Tab Break",
+   "label": "Beneficios Adicionais"
+  },
+  {
+   "fieldname": "table_yexo",
+   "fieldtype": "Table",
+   "options": "Componentes Cessacao"
+  },
+  {
+   "fieldname": "total_iliquido",
+   "fieldtype": "Currency",
+   "label": "Total Iliquido",
+   "read_only": 1
+  },
+  {
+   "fieldname": "base_inss",
+   "fieldtype": "Currency",
+   "label": "Base INSS",
+   "read_only": 1
+  },
+  {
+   "fieldname": "inss",
+   "fieldtype": "Currency",
+   "label": "INSS",
+   "read_only": 1
+  },
+  {
+   "fieldname": "base_irt",
+   "fieldtype": "Currency",
+   "label": "Base IRT",
+   "read_only": 1
+  },
+  {
+   "fieldname": "irt",
+   "fieldtype": "Currency",
+   "label": "IRT",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_descontos",
+   "fieldtype": "Currency",
+   "label": "Total Descontos",
+   "read_only": 1
+  },
+  {
+   "fieldname": "valor_liquido",
+   "fieldtype": "Currency",
+   "label": "Valor Liquido",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "options": "Cessacao Contrato",
+   "read_only": 1,
+   "no_copy": 1,
+   "print_hide": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-05 22:56:29.124174",
+ "modified_by": "Administrator",
+ "module": "Angola Payroll",
+ "name": "Cessacao Contrato",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "HR Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "print": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "is_submittable": 1
+}

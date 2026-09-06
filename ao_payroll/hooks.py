@@ -129,9 +129,14 @@ app_license = "mit"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+      "Salary Slip":
+          "ao_payroll.overrides.salary_slip.AOSalarySlip",
+     
+       "Payroll Entry":
+          "ao_payroll.overrides.payroll_entry.AOPayrollEntry",
+
+  }
 
 # Document Events
 # ---------------
@@ -148,23 +153,12 @@ app_license = "mit"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"ao_payroll.tasks.all"
-# 	],
-# 	"daily": [
-# 		"ao_payroll.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"ao_payroll.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"ao_payroll.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"ao_payroll.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"daily": [
+		"ao_payroll.tasks.process_employee_cessations",
+		"ao_payroll.tasks.process_payroll_accrual_reversals"
+	]
+}
 
 # Testing
 # -------
@@ -247,3 +241,32 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+doc_events = {
+    "Salary Slip": {
+        "validate": "ao_payroll.payroll.salary_slip.validate",
+    },
+    "Employee": {
+        "validate": "ao_payroll.hr.employee_contract.validate_employee_contract",
+    },
+    "Leave Application": {
+        "validate": "ao_payroll.leave_policy.validate_leave_type_active",
+    },
+    "Leave Allocation": {
+        "validate": "ao_payroll.leave_policy.validate_leave_type_active",
+    },
+    "Attendance": {
+        "validate": "ao_payroll.leave_policy.validate_attendance_payroll_source",
+    },
+    "Employee Promotion": {
+        "validate": "ao_payroll.hr.employee_transactions.validate_employee_promotion",
+    },
+    "Employee Transfer": {
+        "validate": "ao_payroll.hr.employee_transactions.validate_employee_transfer",
+    },
+    "Employee Onboarding": {
+        "validate": "ao_payroll.hr.employee_transactions.validate_employee_onboarding",
+    },
+    "Employee Separation": {
+        "validate": "ao_payroll.hr.employee_transactions.validate_employee_separation",
+    },
+}

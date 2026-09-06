@@ -5,3 +5,15 @@
 tags
 node_modules
 __pycache__
+# Local backup / review artifacts
+*.bak
+*.bak.*
+*.before_*
+*.pre_*
+*.stage*.bak
+*.orig
+
+# Backup variants
+*.bak*
+*.pre_*
+*.before_*

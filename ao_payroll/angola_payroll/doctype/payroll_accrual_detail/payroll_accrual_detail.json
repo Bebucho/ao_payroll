@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-09-06 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "salary_structure_assignment",
+  "base_salary",
+  "earned_service_months",
+  "holiday_earned",
+  "holiday_paid",
+  "holiday_target",
+  "christmas_earned",
+  "christmas_paid",
+  "christmas_target"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "salary_structure_assignment",
+   "fieldtype": "Link",
+   "label": "Salary Structure Assignment",
+   "options": "Salary Structure Assignment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "base_salary",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Base Salary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "earned_service_months",
+   "fieldtype": "Int",
+   "label": "Service Months",
+   "read_only": 1
+  },
+  {
+   "fieldname": "holiday_earned",
+   "fieldtype": "Currency",
+   "label": "Férias Earned",
+   "read_only": 1
+  },
+  {
+   "fieldname": "holiday_paid",
+   "fieldtype": "Currency",
+   "label": "Férias Paid",
+   "read_only": 1
+  },
+  {
+   "fieldname": "holiday_target",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Férias Liability",
+   "read_only": 1
+  },
+  {
+   "fieldname": "christmas_earned",
+   "fieldtype": "Currency",
+   "label": "Natal Earned",
+   "read_only": 1
+  },
+  {
+   "fieldname": "christmas_paid",
+   "fieldtype": "Currency",
+   "label": "Natal Paid",
+   "read_only": 1
+  },
+  {
+   "fieldname": "christmas_target",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Natal Liability",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-06 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Angola Payroll",
+ "name": "Payroll Accrual Detail",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

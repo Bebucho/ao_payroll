@@ -1,0 +1,70 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-08-24 16:40:57.624564",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "year_section",
+  "year",
+  "description",
+  "active",
+  "brackets"
+ ],
+ "fields": [
+  {
+   "fieldname": "year_section",
+   "fieldtype": "Section Break",
+   "label": "Year"
+  },
+  {
+   "fieldname": "year",
+   "fieldtype": "Int",
+   "label": "Year"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description"
+  },
+  {
+   "default": "0",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "label": "Active"
+  },
+  {
+   "fieldname": "brackets",
+   "fieldtype": "Table",
+   "label": "Brackets",
+   "options": "IRT Slabs"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-08-24 16:49:47.907923",
+ "modified_by": "Administrator",
+ "module": "Angola Payroll",
+ "name": "IRT Tables",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
