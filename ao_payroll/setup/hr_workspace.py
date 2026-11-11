@@ -154,8 +154,8 @@ def execute():
     card("Configuracoes")
 
     doctype(
-        "Angola Payroll Settings",
-        "Angola Payroll Settings",
+        "Settings Angola Payroll",
+        "Settings Angola Payroll",
     )
     doctype(
         "IRT Tables",

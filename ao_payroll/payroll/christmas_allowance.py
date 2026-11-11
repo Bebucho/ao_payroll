@@ -4,6 +4,7 @@ import frappe
 from frappe.utils import flt, getdate
 
 from ao_payroll.payroll import calculator
+from ao_payroll.payroll.settings import get_payroll_settings
 
 
 MONTHS = {
@@ -120,8 +121,9 @@ def calculate_annual_entitlement(
     year,
     base_salary,
 ):
-    settings = frappe.get_single(
-        "Angola Payroll Settings"
+    settings = get_payroll_settings(
+        employee=employee,
+        year=year,
     )
 
     rate = (
@@ -163,8 +165,9 @@ def calculate_earned_to_date(
     base_salary,
     payroll_date,
 ):
-    settings = frappe.get_single(
-        "Angola Payroll Settings"
+    settings = get_payroll_settings(
+        employee=employee,
+        reference_date=payroll_date,
     )
 
     rate = (
@@ -220,8 +223,9 @@ def calculate_salary_slip_christmas_allowance(
         payroll_end_date
     )
 
-    settings = frappe.get_single(
-        "Angola Payroll Settings"
+    settings = get_payroll_settings(
+        employee=employee,
+        reference_date=payroll_end_date,
     )
 
     mode = getattr(

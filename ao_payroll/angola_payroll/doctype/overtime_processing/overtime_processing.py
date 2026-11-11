@@ -1,4 +1,5 @@
 import frappe
+from ao_payroll.payroll.settings import get_payroll_settings
 from frappe import _
 from frappe.model.document import Document
 from frappe.utils import flt, getdate
@@ -46,8 +47,9 @@ class OvertimeProcessing(Document):
         self.approved_hours = request.approved_hours
 
     def set_salary_component(self):
-        settings = frappe.get_single(
-            "Angola Payroll Settings"
+        settings = get_payroll_settings(
+            company=self.company,
+            reference_date=self.overtime_date,
         )
 
         self.salary_component = (

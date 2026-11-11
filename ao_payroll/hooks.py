@@ -242,6 +242,9 @@ scheduler_events = {
 # ignore_translatable_strings_from = []
 
 doc_events = {
+    "Journal Entry": {
+        "before_cancel": "ao_payroll.journal_entry_guard.block_payroll_journal_cancellation",
+    },
     "Salary Slip": {
         "validate": "ao_payroll.payroll.salary_slip.validate",
     },

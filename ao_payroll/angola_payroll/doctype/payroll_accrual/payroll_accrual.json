@@ -1,8 +1,7 @@
 {
  "actions": [],
- "allow_rename": 0,
  "autoname": "format:PA-{YYYY}-{#####}",
- "creation": "2026-09-06 00:00:00.000000",
+ "creation": "2026-09-06 18:09:34.975427",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -23,25 +22,30 @@
   "section_break_3",
   "journal_entry",
   "reversal_date",
-  "reversal_journal_entry"
+  "reversal_journal_entry",
+  "amended_from"
  ],
  "fields": [
   {
    "fieldname": "company",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Company",
    "options": "Company",
    "reqd": 1
   },
   {
    "fieldname": "year",
-   "fieldtype": "Int",
+   "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Year",
+   "options": "Fiscal Year",
    "reqd": 1
   },
   {
    "fieldname": "month",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Month",
    "options": "\nJanuary\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember",
    "reqd": 1
@@ -60,19 +64,19 @@
   {
    "fieldname": "holiday_target",
    "fieldtype": "Currency",
-   "label": "Férias Target Liability",
+   "label": "F\u00e9rias Target Liability",
    "read_only": 1
   },
   {
    "fieldname": "holiday_gl_balance",
    "fieldtype": "Currency",
-   "label": "Férias Current GL Balance",
+   "label": "F\u00e9rias Current GL Balance",
    "read_only": 1
   },
   {
    "fieldname": "holiday_movement",
    "fieldtype": "Currency",
-   "label": "Férias Movement",
+   "label": "F\u00e9rias Movement",
    "read_only": 1
   },
   {
@@ -133,17 +137,30 @@
    "label": "Reversal Journal Entry",
    "options": "Journal Entry",
    "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Payroll Accrual",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-09-06 00:00:00.000000",
+ "modified": "2026-09-17 12:19:04.790943",
  "modified_by": "Administrator",
  "module": "Angola Payroll",
  "name": "Payroll Accrual",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
+   "amend": 1,
+   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -152,11 +169,11 @@
    "role": "Accounts Manager",
    "share": 1,
    "submit": 1,
-   "write": 1,
-   "cancel": 1,
-   "amend": 1
+   "write": 1
   },
   {
+   "amend": 1,
+   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -165,11 +182,10 @@
    "role": "System Manager",
    "share": 1,
    "submit": 1,
-   "write": 1,
-   "cancel": 1,
-   "amend": 1
+   "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

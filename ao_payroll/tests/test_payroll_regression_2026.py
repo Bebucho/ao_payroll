@@ -7,6 +7,7 @@ from frappe.tests.utils import FrappeTestCase
 from frappe.utils import flt
 
 from ao_payroll.payroll import calculator
+from ao_payroll.payroll.settings import get_payroll_settings
 from ao_payroll.tasks import process_employee_cessations
 from unittest.mock import patch, MagicMock
 
@@ -28,8 +29,9 @@ class TestPayrollRegression2026(FrappeTestCase):
     # ---------------------------------------------------------
 
     def test_reg_010_holiday_allowance_rate(self):
-        settings = frappe.get_single(
-            "Angola Payroll Settings"
+        settings = get_payroll_settings(
+            employee=self.EMPLOYEE,
+            year=2026,
         )
 
         self.assertAlmostEqual(
@@ -62,8 +64,9 @@ class TestPayrollRegression2026(FrappeTestCase):
     # ---------------------------------------------------------
 
     def test_reg_011_christmas_allowance_rate(self):
-        settings = frappe.get_single(
-            "Angola Payroll Settings"
+        settings = get_payroll_settings(
+            employee=self.EMPLOYEE,
+            year=2026,
         )
 
         self.assertAlmostEqual(
@@ -627,7 +630,10 @@ class TestPayrollRegression2026(FrappeTestCase):
         )
 
         rate = flt(
-            calculator.get_inss_employee_rate()
+            calculator.get_inss_employee_rate(
+                employee=self.EMPLOYEE,
+                reference_date="2025-07-31",
+            )
         )
 
         self.assertAlmostEqual(
@@ -1212,6 +1218,15 @@ class TestPayrollRegression2026(FrappeTestCase):
                 "docstatus": 1,
             },
             "name",
+        )
+
+        self.assertTrue(
+            slip_name,
+            (
+                "REG-030: required submitted Salary Slip "
+                "for HE-EMP/006 / HR-PRUN-2026-00011 "
+                "is missing from the regression database."
+            ),
         )
 
         ss = frappe.get_doc(
@@ -1938,7 +1953,7 @@ class TestPayrollRegression2026(FrappeTestCase):
             ),
             patch(
                 "ao_payroll.payroll.holiday_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -2008,7 +2023,7 @@ class TestPayrollRegression2026(FrappeTestCase):
             ),
             patch(
                 "ao_payroll.payroll.holiday_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -2082,7 +2097,7 @@ class TestPayrollRegression2026(FrappeTestCase):
             ),
             patch(
                 "ao_payroll.payroll.holiday_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -2145,7 +2160,7 @@ class TestPayrollRegression2026(FrappeTestCase):
             ),
             patch(
                 "ao_payroll.payroll.holiday_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -2209,7 +2224,7 @@ class TestPayrollRegression2026(FrappeTestCase):
             ),
             patch(
                 "ao_payroll.payroll.holiday_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -2256,7 +2271,7 @@ class TestPayrollRegression2026(FrappeTestCase):
         with (
             patch(
                 "ao_payroll.payroll.holiday_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -2325,7 +2340,7 @@ class TestPayrollRegression2026(FrappeTestCase):
         with (
             patch(
                 "ao_payroll.payroll.holiday_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -2383,7 +2398,7 @@ class TestPayrollRegression2026(FrappeTestCase):
         with (
             patch(
                 "ao_payroll.payroll.holiday_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -2446,7 +2461,7 @@ class TestPayrollRegression2026(FrappeTestCase):
         with (
             patch(
                 "ao_payroll.payroll.holiday_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -2518,7 +2533,7 @@ class TestPayrollRegression2026(FrappeTestCase):
         with (
             patch(
                 "ao_payroll.payroll.holiday_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -2594,7 +2609,7 @@ class TestPayrollRegression2026(FrappeTestCase):
         with (
             patch(
                 "ao_payroll.payroll.holiday_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -2647,7 +2662,7 @@ class TestPayrollRegression2026(FrappeTestCase):
         with (
             patch(
                 "ao_payroll.payroll.holiday_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -2694,7 +2709,7 @@ class TestPayrollRegression2026(FrappeTestCase):
 
         with patch(
             "ao_payroll.payroll.holiday_allowance."
-            "frappe.get_single",
+            "get_payroll_settings",
             return_value=settings,
         ):
             result = (
@@ -2762,7 +2777,7 @@ class TestPayrollRegression2026(FrappeTestCase):
             patch(
                 "ao_payroll.angola_payroll.doctype."
                 "pedido_subsidio_ferias.pedido_subsidio_ferias."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -2887,7 +2902,7 @@ class TestPayrollRegression2026(FrappeTestCase):
             patch(
                 "ao_payroll.angola_payroll.doctype."
                 "pedido_subsidio_ferias.pedido_subsidio_ferias."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -2972,7 +2987,7 @@ class TestPayrollRegression2026(FrappeTestCase):
             patch(
                 "ao_payroll.angola_payroll.doctype."
                 "pedido_subsidio_ferias.pedido_subsidio_ferias."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -3717,7 +3732,7 @@ class TestPayrollRegression2026(FrappeTestCase):
         with (
             patch(
                 "ao_payroll.payroll.christmas_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -3784,7 +3799,7 @@ class TestPayrollRegression2026(FrappeTestCase):
         with (
             patch(
                 "ao_payroll.payroll.christmas_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -3865,7 +3880,7 @@ class TestPayrollRegression2026(FrappeTestCase):
         with (
             patch(
                 "ao_payroll.payroll.christmas_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -3938,7 +3953,7 @@ class TestPayrollRegression2026(FrappeTestCase):
         with (
             patch(
                 "ao_payroll.payroll.christmas_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(
@@ -4006,7 +4021,7 @@ class TestPayrollRegression2026(FrappeTestCase):
         with (
             patch(
                 "ao_payroll.payroll.christmas_allowance."
-                "frappe.get_single",
+                "get_payroll_settings",
                 return_value=settings,
             ),
             patch(

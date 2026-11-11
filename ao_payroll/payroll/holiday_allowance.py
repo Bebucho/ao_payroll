@@ -2,6 +2,7 @@ import frappe
 from frappe.utils import flt, getdate
 
 from ao_payroll.payroll import calculator
+from ao_payroll.payroll.settings import get_payroll_settings
 
 
 def calculate_leave_block_holiday_allowance(
@@ -45,8 +46,9 @@ def calculate_leave_block_holiday_allowance(
             f"Leave Application {leave.name} is not Ferias."
         )
 
-    settings = frappe.get_single(
-        "Angola Payroll Settings"
+    settings = get_payroll_settings(
+        employee=leave.employee,
+        reference_date=leave.from_date,
     )
 
     mode = getattr(
@@ -190,8 +192,9 @@ def create_leave_block_holiday_allowance(
             "created": False,
         }
 
-    settings = frappe.get_single(
-        "Angola Payroll Settings"
+    settings = get_payroll_settings(
+        employee=result["employee"],
+        reference_date=payroll_date,
     )
 
     component = getattr(
@@ -272,8 +275,9 @@ def calculate_fixed_month_holiday_allowance(
 
     import calendar
 
-    settings = frappe.get_single(
-        "Angola Payroll Settings"
+    settings = get_payroll_settings(
+        employee=employee,
+        reference_date=payroll_date,
     )
 
     if (
@@ -360,8 +364,9 @@ def calculate_monthly_duodecimo_holiday_allowance(
     circumstances remains visible for later settlement.
     """
 
-    settings = frappe.get_single(
-        "Angola Payroll Settings"
+    settings = get_payroll_settings(
+        employee=employee,
+        reference_date=payroll_date,
     )
 
     if (
@@ -433,8 +438,9 @@ def calculate_employee_request_holiday_allowance(
     Approval workflow will be implemented separately.
     """
 
-    settings = frappe.get_single(
-        "Angola Payroll Settings"
+    settings = get_payroll_settings(
+        employee=employee,
+        reference_date=payroll_date,
     )
 
     if (
@@ -522,8 +528,9 @@ def calculate_salary_slip_holiday_allowance(
         payroll_end_date
     )
 
-    settings = frappe.get_single(
-        "Angola Payroll Settings"
+    settings = get_payroll_settings(
+        employee=employee,
+        reference_date=payroll_end_date,
     )
 
     mode = getattr(

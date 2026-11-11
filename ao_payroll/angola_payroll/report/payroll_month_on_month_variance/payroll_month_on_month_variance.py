@@ -1,6 +1,7 @@
 import calendar
 
 import frappe
+from ao_payroll.payroll.settings import get_payroll_settings
 from frappe import _
 from frappe.utils import (
     add_months,
@@ -45,8 +46,9 @@ def execute(filters=None):
 
     components = get_components(all_slip_names)
 
-    settings = frappe.get_single(
-        "Angola Payroll Settings"
+    settings = get_payroll_settings(
+        company=filters.company,
+        reference_date=periods["current_end"],
     )
 
     data = build_data(

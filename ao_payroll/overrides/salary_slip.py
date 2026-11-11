@@ -453,8 +453,9 @@ class AOSalarySlip(SalarySlip):
 
     def get_ao_payroll_settings(self):
         if not getattr(self, "_ao_payroll_settings", None):
-            self._ao_payroll_settings = frappe.get_single(
-                "Angola Payroll Settings"
+            self._ao_payroll_settings = calculator.get_payroll_settings(
+                company=self.company,
+                reference_date=self.end_date,
             )
 
         return self._ao_payroll_settings
@@ -641,7 +642,10 @@ class AOSalarySlip(SalarySlip):
                     earning.amount
                 )
 
-        employee_rate = calculator.get_inss_employee_rate()
+        employee_rate = calculator.get_inss_employee_rate(
+            company=self.company,
+            reference_date=self.end_date,
+        )
 
         inss = round(
             inss_base * employee_rate

@@ -2,6 +2,7 @@ import calendar
 from datetime import date
 
 import frappe
+from ao_payroll.payroll.settings import get_payroll_settings
 from frappe.utils import flt, getdate
 
 from ao_payroll.payroll import calculator
@@ -191,8 +192,9 @@ def calculate_employee_accrual(
         salary["base"]
     )
 
-    settings = frappe.get_single(
-        "Angola Payroll Settings"
+    settings = get_payroll_settings(
+        employee=employee,
+        reference_date=posting_date,
     )
 
     # -----------------------------------------------------
@@ -392,8 +394,9 @@ def calculate_monthly_accrual(
         posting_date
     )
 
-    settings = frappe.get_single(
-        "Angola Payroll Settings"
+    settings = get_payroll_settings(
+        company=company,
+        reference_date=posting_date,
     )
 
     employees = frappe.get_all(
@@ -524,8 +527,9 @@ def create_monthly_accrual_journal_entry(
         posting_date
     )
 
-    settings = frappe.get_single(
-        "Angola Payroll Settings"
+    settings = get_payroll_settings(
+        company=company,
+        reference_date=posting_date,
     )
 
     remark = (

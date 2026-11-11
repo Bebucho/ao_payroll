@@ -462,8 +462,10 @@ class CessacaoContrato(Document):
             # no ano da cessação.
             # -------------------------------------------------
 
-            settings = frappe.get_single("Angola Payroll Settings")
-
+            settings = calculator.get_payroll_settings(
+                company=employee.company,
+                reference_date=exit_date,
+            )
             holiday_rate = flt(settings.holiday_allowance_rate)
             christmas_rate = flt(settings.christmas_allowance_rate)
 
@@ -735,7 +737,10 @@ class CessacaoContrato(Document):
             if incidencia_inss:
                 inss_base += amount
 
-        inss_rate = calculator.get_inss_employee_rate()
+        inss_rate = calculator.get_inss_employee_rate(
+            company=employee.company,
+            reference_date=exit_date,
+        )
 
         inss_amount = round(
             inss_base * inss_rate

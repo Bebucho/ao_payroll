@@ -1,4 +1,5 @@
 import frappe
+from ao_payroll.payroll.settings import get_payroll_settings
 
 from frappe.utils import flt
 from hrms.payroll.doctype.payroll_entry.payroll_entry import PayrollEntry
@@ -43,8 +44,9 @@ class AOPayrollEntry(PayrollEntry):
                 "amount": 0,
             }
 
-        settings = frappe.get_single(
-            "Angola Payroll Settings"
+        settings = get_payroll_settings(
+            company=self.company,
+            reference_date=self.end_date,
         )
 
         rate = (
@@ -121,8 +123,9 @@ class AOPayrollEntry(PayrollEntry):
         if amount <= 0:
             return
 
-        settings = frappe.get_single(
-            "Angola Payroll Settings"
+        settings = get_payroll_settings(
+            company=self.company,
+            reference_date=self.end_date,
         )
 
         expense_account = (
@@ -174,19 +177,6 @@ class AOPayrollEntry(PayrollEntry):
 
         self._ao_employer_inss = result
 
-    def get_tax_liability_accounts(self):
-        rows = frappe.get_all(
-            "Tax Liability Accounts",
-            filters={"active": 1},
-            fields=["account", "party"],
-        )
-
-        return {
-            row.account: row.party
-            for row in rows
-            if row.account and row.party
-        }
-
     def make_journal_entry(
         self,
         accounts,
@@ -222,16 +212,6 @@ class AOPayrollEntry(PayrollEntry):
                 accounts,
                 submitted_salary_slips,
             )
-
-        tax_mapping = self.get_tax_liability_accounts()
-
-        for row in accounts:
-            account = row.get("account")
-            state_party = tax_mapping.get(account)
-
-            if state_party:
-                row["party_type"] = "Estado"
-                row["party"] = state_party
 
         print("Accounts AFTER:")
         for row in accounts:

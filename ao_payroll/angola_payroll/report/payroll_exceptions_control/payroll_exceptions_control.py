@@ -1,4 +1,5 @@
 import frappe
+from ao_payroll.payroll.settings import get_payroll_settings
 from frappe import _
 from frappe.utils import flt, getdate
 
@@ -7,8 +8,9 @@ def execute(filters=None):
     filters = frappe._dict(filters or {})
     validate_filters(filters)
 
-    settings = frappe.get_single(
-        "Angola Payroll Settings"
+    settings = get_payroll_settings(
+        company=filters.company,
+        reference_date=filters.to_date,
     )
 
     data = []

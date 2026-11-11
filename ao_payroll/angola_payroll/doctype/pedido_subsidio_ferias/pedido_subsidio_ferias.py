@@ -1,4 +1,5 @@
 import frappe
+from ao_payroll.payroll.settings import get_payroll_settings
 from frappe.model.document import Document
 from frappe.utils import flt, getdate
 
@@ -20,8 +21,9 @@ class PedidoSubsidioFerias(Document):
         self._cancel_additional_salary()
 
     def _validate_policy(self):
-        settings = frappe.get_single(
-            "Angola Payroll Settings"
+        settings = get_payroll_settings(
+            employee=self.employee,
+            reference_date=self.payroll_date,
         )
 
         mode = getattr(
@@ -216,8 +218,9 @@ class PedidoSubsidioFerias(Document):
             )
 
     def _create_additional_salary(self):
-        settings = frappe.get_single(
-            "Angola Payroll Settings"
+        settings = get_payroll_settings(
+            employee=self.employee,
+            reference_date=self.payroll_date,
         )
 
         component = getattr(

@@ -10,12 +10,21 @@ from frappe.utils import (
 )
 
 
-def get_payroll_settings():
-    return frappe.get_single("Angola Payroll Settings")
+from ao_payroll.payroll.settings import get_payroll_settings
 
 
-def get_inss_employee_rate():
-    settings = get_payroll_settings()
+def get_inss_employee_rate(
+    company=None,
+    year=None,
+    reference_date=None,
+    employee=None,
+):
+    settings = get_payroll_settings(
+        company=company,
+        year=year,
+        reference_date=reference_date,
+        employee=employee,
+    )
     return flt(settings.inss_employee_rate) / 100
 
 
@@ -593,7 +602,10 @@ def calculate_holiday_allowance_entitlement(
     It does not decide when the subsidy is paid.
     """
 
-    settings = get_payroll_settings()
+    settings = get_payroll_settings(
+        employee=employee,
+        year=year,
+    )
 
     rate = (
         flt(settings.holiday_allowance_rate)
@@ -771,7 +783,10 @@ def get_holiday_allowance_paid(
     reduces the employee's annual entitlement.
     """
 
-    settings = get_payroll_settings()
+    settings = get_payroll_settings(
+        employee=employee,
+        year=year,
+    )
 
     component = getattr(
         settings,
@@ -903,7 +918,10 @@ def get_christmas_allowance_paid(
     Includes normal and termination proportional components.
     """
 
-    settings = get_payroll_settings()
+    settings = get_payroll_settings(
+        employee=employee,
+        year=year,
+    )
 
     component = getattr(
         settings,
@@ -1249,7 +1267,7 @@ def calculate_gross_salary(
     }
 
 
-def calculate_inss_from_payroll(result):
+def calculate_inss_from_payroll(result, employee, payroll_end_date):
     inss_base = 0
 
     for earning in result.get("earnings", []):
@@ -1271,7 +1289,10 @@ def calculate_inss_from_payroll(result):
                 earning.get("amount", 0)
             )
 
-    employee_rate = get_inss_employee_rate()
+    employee_rate = get_inss_employee_rate(
+        employee=employee,
+        reference_date=payroll_end_date,
+    )
 
     inss = math.ceil(
         inss_base * employee_rate
@@ -1645,7 +1666,9 @@ def calculate_employee_payroll(
     )
 
     inss_result = calculate_inss_from_payroll(
-        result
+        result,
+        employee=employee,
+        payroll_end_date=payroll_end_date,
     )
 
     irt_base_result = calculate_irt_base(

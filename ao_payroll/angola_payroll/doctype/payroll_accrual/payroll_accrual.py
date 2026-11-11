@@ -128,6 +128,14 @@ class PayrollAccrual(Document):
             if je.docstatus == 1:
                 je.cancel()
 
+    def on_trash(self):
+        frappe.throw(
+            _(
+                "Payroll Accrual records cannot be deleted. "
+                "Cancel the document instead."
+            )
+        )
+
     def _set_posting_date(self):
         if not self.year or not self.month:
             return
